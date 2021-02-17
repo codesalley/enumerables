@@ -37,6 +37,9 @@ module Enumerable
     count
   end
 
+  # rubocop:disable Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/CyclomaticComplexity
+
   def my_all?(param = nil)
     if block_given?
       to_a.my_each { |item| return false if yield(item) == false }
@@ -97,6 +100,9 @@ module Enumerable
     end
     start
   end
+
+  # rubocop:enable Metrics/PerceivedComplexity
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
 
 def multiply_els(input)
