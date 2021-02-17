@@ -1,6 +1,7 @@
 module Enumerable
   def my_each
     return to_enum unless block_given?
+
     to_a.length.times do |index|
       yield to_a[index]
     end
@@ -9,6 +10,7 @@ module Enumerable
 
   def my_each_with_index
     return to_enum unless block_given?
+
     to_a.length.times do |index|
       yield(to_a[index], index)
     end
@@ -17,6 +19,7 @@ module Enumerable
 
   def my_select
     return to_enum unless block_given?
+
     results = []
     my_each { |item| results.push(item) if yield item }
     results
@@ -42,7 +45,7 @@ module Enumerable
       to_a.my_each { |item| return false if item.nil? || item == false }
     elsif !param.nil? && (param.is_a? Class)
       to_a.my_each { |item| return false unless [item.class, item.class.superclass].include?(param) }
-    elsif !param.nil? && param.class == Regexp
+    elsif !param.nil? && param.instance_of?(Regexp)
       to_a.my_each { |item| return false unless param.match(item) }
     else
       to_a.my_each { |item| return false if item != param }
@@ -71,7 +74,7 @@ module Enumerable
   end
 
   def my_map(proc = nil)
-    return to_enum unless block_given? or !proc.nil?
+    return to_enum unless block_given? || !proc.nil?
 
     arr = []
     if proc.nil?

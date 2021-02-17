@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'enumerables'
 
 puts '\nNOTE: All test must be passed'
