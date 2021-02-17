@@ -8,7 +8,8 @@ describe 'Enumerable' do
     it 'my_each must be an Enumerator ' do
       expect([1, 2, 3].my_each.instance_of?(Enumerator)).to eq(true)
     end
-    it 'when a block is given when self is an array returns the array itself after calling the given block once for each element in self' do
+    it 'when a block is given when self is an array returns the array itself
+      after calling the given block once for each element in self' do
       expect([1, 2, 3, 4, 5].each(&proc { |n| n % 2 }) == [1, 2, 3, 4, 5].my_each(&proc { |n| n % 2 })).not_to eq(false)
     end
   end
@@ -39,10 +40,12 @@ describe 'Enumerable' do
     end
   end
   describe '#my_all?' do
-    it 'when a Regex is passed as an argument returns true if all of the collection matches the Regex ' do
+    it 'when a Regex is passed as an argument returns true if all
+          of the collection matches the Regex ' do
       expect(%w[car cat].all?(/a/) == %w[car cat].my_all?(/a/)).not_to eq(false)
     end
-    it 'when a class is passed as an argument returns true if all of the collection is a member of such class::Numeric' do
+    it 'when a class is passed as an argument returns true if all of the
+         collection is a member of such class::Numeric' do
       expect([1, -2, 3.4].all?(Numeric) == [1, -2, 3.4].my_all?(Numeric)).to eq(true)
     end
   end
@@ -75,7 +78,8 @@ describe 'Enumerable' do
       expect(%w[to four tri].my_inject(&proc { |a, b| [a, b].max_by(&:length) }) ==
                %w[to four tri].inject(&proc { |a, b| [a, b].max_by(&:length) })).to eq(true)
     end
-    it 'when a block is given without an initail value combines all elements of enum by applying a binary operation, specified by a block::range' do
+    it 'when a block is given without an initail value combines all elements of enum by
+        §applying a binary operation, specified by a block::range' do
       expect((1..3).inject(&proc { |total, num| total * num }) == (1..3).my_inject(&proc { |total, num|
                                                                                       total * num
                                                                                     })).not_to eq(false)
