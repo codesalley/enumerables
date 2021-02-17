@@ -46,7 +46,7 @@ describe 'Enumerable' do
     end
     it 'when a class is passed as an argument returns true if all of the
          collection is a member of such class::Numeric' do
-      expect([1, -2, 3.4].all?(Numeric) == [1, -2, 3.4].my_all?(Numeric)).to eq(true)
+      expect([1, -2, 3.4].all?(Numeric) != [1, -2, 3.4].my_all?(Numeric)).to eq(false)
     end
   end
   describe '#my_any?' do
@@ -62,7 +62,7 @@ describe 'Enumerable' do
       expect((1..3).none?(&proc { |num| num.even? }) == (1..3).my_none?(&proc { |num| num.even? })).to eq(true)
     end
     it ' when no block or argument is given returns false only if one of the collection members is true' do
-      expect([false, nil, []].none? == [false, nil, []].my_none?).to eq(true)
+      expect([false, nil, []].none? != [false, nil, []].my_none?).to eq(false)
     end
   end
   describe '#my_map' do
